@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Invoicing App</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <!-- Login Screen -->
+  <div id="login-screen">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="error-message"></p>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboard" style="display: none;">
+    <h2>Welcome to the Dashboard</h2>
+    <button onclick="showNewInvoiceForm()">Create New Invoice</button>
+  </div>
+
+  <!-- Create New Invoice Form -->
+  <div id="new-invoice-form" style="display: none;">
+    <h2>Create a New Invoice</h2>
+    <form id="invoice-form" onsubmit="createInvoice(event)">
+      <div>
+        <label for="customer-name">Customer Name:</label>
+        <input type="text" id="customer-name" required>
+      </div>
+      <div>
+        <label for="invoice-date">Invoice Date:</label>
+        <input type="date" id="invoice-date" required>
+      </div>
+      <div>
+        <label for="item-name">Item Name:</label>
+        <input type="text" id="item-name">
+      </div>
+      <div>
+        <label for="item-quantity">Quantity:</label>
+        <input type="number" id="item-quantity">
+      </div>
+      <div>
+        <label for="item-price">Unit Price:</label>
+        <input type="number" id="item-price">
+      </div>
+      <div>
+        <label for="item-discount">Discount:</label>
+        <input type="number" id="item-discount">
+      </div>
+      <button type="button" onclick="addItem()">Add Item</button>
+      <table id="invoice-items-table">
+        <thead>
+          <tr>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Discount</th>
+            <th>Subtotal</th>
+            <th>Tax Amount</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="invoice-items-body">
+          <!-- Populated dynamically with added items -->
+        </tbody>
+      </table>
+      <div>
+        <label for="net-total">Net Total:</label>
+        <input type="text" id="net-total" readonly>
+      </div>
+      <button type="submit">Create Invoice</button>
+    </form>
+  </div>
+
+  <!-- Recommended Items -->
+  <div id="recommendations-container"></div>
+
+  <!-- Billing and Payment -->
+  <div id="billing-payment" style="display: none;">
+    <h2>Billing and Payment</h2>
+    <div id="invoice-details">
+      <!-- Populated dynamically with invoice details -->
+    </div>
+    <div id="payment-status">
+      <label for="payment-status-select">Payment Status:</label>
+      <select id="payment-status-select" onchange="updatePaymentStatus()">
+        <option value="Pending">Pending</option>
+        <option value="Paid">Paid</option>
+        <option value="Partially Paid">Partially Paid</option>
+      </select>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
